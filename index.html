@@ -41,7 +41,9 @@
                         data = results;
                         $.each(data.features, function(i, feature) {
                             let coords = feature.geometry.coordinates;
-                            var marker = L.marker([coords[1], coords[0]]).addTo(myMap);
+                            let magnitude = String(feature.properties.magnitude.toFixed(1));
+                            var marker = L.marker([coords[1], coords[0]]).addTo(myMap)
+                            .bindPopup(('<p>MAG: ' + magnitude + '</p>'), {closeOnClick: false, autoClose: false});
                         });
                     }
                 });
