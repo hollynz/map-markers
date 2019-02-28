@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin=""/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
@@ -41,9 +42,16 @@
                         data = results;
                         $.each(data.features, function(i, feature) {
                             let coords = feature.geometry.coordinates;
-                            let magnitude = String(feature.properties.magnitude.toFixed(1));
-                            var marker = L.marker([coords[1], coords[0]]).addTo(myMap)
-                            .bindPopup(('<p>MAG: ' + magnitude + '</p>'), {closeOnClick: false, autoClose: false});
+                            let magnitude = feature.properties.magnitude.toFixed(1);
+                            let magnitudeString = String(magnitude);
+                            let locality = feature.properties.locality;
+                            var marker = L.marker([coords[1], coords[0]]).addTo(myMap);
+                            if(magnitude >= 3.5){
+                                marker.bindPopup(('<i class="fas fa-exclamation-circle"></i><div class="magnitude danger"><p>Magnitude: ' + magnitudeString + '</p></div><hr><div><p class="locality">' + locality + '</p></div>'), {closeOnClick: true, autoClose: true});
+                            }
+                            else {
+                                marker.bindPopup(('<div  class="magnitude"><p>Magnitude: ' + magnitudeString + '</p></div><hr><div><p class="locality">' + locality + '</p></div>'), {closeOnClick: true, autoClose: true});
+                            }
                         });
                     }
                 });

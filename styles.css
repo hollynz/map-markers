@@ -1,1 +1,46 @@
-#mapID { height: 100vh; }
+#mapID { 
+    height: 100vh; 
+}
+
+i {
+    color: red;
+    align-self: center;
+    font-size: 170%;
+    margin-bottom: 8%;
+}
+
+.magnitude {
+    padding: 0;
+    font-size: 130%;
+}
+
+.danger {
+    color: red;
+}
+
+.leaflet-popup-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    width: 95%;
+    font-size: 120%;
+    align-self: center;
+}
+
+.leaflet-popup-content div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.leaflet-popup-content p {
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+    border: black solid 0.2px;
+    width: 50%;
+}
